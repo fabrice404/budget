@@ -140,17 +140,15 @@ const Account = ({ accounts, selected, checkTransaction }) => {
                           </span>
                         </td>
                         <td className="text-right p-2">
-                          {isPast(transaction.date) && (
-                            <button
-                              type="button"
-                              className="bg-pink-50 text-pink-500 text-sm py-1 px-3 rounded-lg"
-                              onClick={() => {
-                                checkTransaction(account.id, transaction);
-                              }}
-                            >
-                              &#10003;
-                            </button>
-                          )}
+                          <button
+                            type="button"
+                            className="bg-pink-50 text-pink-500 text-sm py-1 px-3 rounded-lg"
+                            onClick={() => {
+                              checkTransaction(account.id, transaction);
+                            }}
+                          >
+                            &#10003;
+                          </button>
                         </td>
                       </tr>
                     ))}
