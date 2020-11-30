@@ -14,7 +14,7 @@ export const nextPayDay = () => {
   const todayMonth = now.getMonth();
   const todayYear = now.getFullYear();
 
-  const npd = new Date(todayYear, todayMonth, todayDay, 0, 0, 0, 0);
+  const npd = new Date(todayYear, todayMonth, 25, 0, 0, 0, 0);
 
   if (npd.getDay() === 0) {
     // sunday = remove 2 days
