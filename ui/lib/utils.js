@@ -42,23 +42,13 @@ export const nextPayDay = () => {
 
 export const isToday = date => {
   const today = new Date();
-  today.setHours(0);
-  today.setMinutes(0);
-  today.setSeconds(0);
-  today.setMilliseconds(0);
-  const diff = new Date(date) - today;
-  return diff === 0;
+  return date === dateYYYYMMDD(today);
 };
 
 export const isYesterday = date => {
   const yesterday = new Date();
   yesterday.setHours(-24);
-  yesterday.setHours(0);
-  yesterday.setMinutes(0);
-  yesterday.setSeconds(0);
-  yesterday.setMilliseconds(0);
-  const diff = new Date(date) - yesterday;
-  return diff === 0;
+  return date === dateYYYYMMDD(yesterday);
 };
 
 export const dateDDMMYYYY = date =>
@@ -66,16 +56,16 @@ export const dateDDMMYYYY = date =>
     .getDate()
     .toString()
     .padStart(2, '0')}/${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}/${date.getFullYear()}`;
+      .toString()
+      .padStart(2, '0')}/${date.getFullYear()}`;
 
 export const dateYYYYMMDD = date =>
   `${date.getFullYear()}-${(date.getMonth() + 1)
     .toString()
     .padStart(2, '0')}-${date
-    .getDate()
-    .toString()
-    .padStart(2, '0')}`;
+      .getDate()
+      .toString()
+      .padStart(2, '0')}`;
 
 export const accountType = type => {
   return {
