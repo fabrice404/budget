@@ -5,7 +5,7 @@ const Menu = ({ accounts, selected, setSelected, getAccounts }) => {
   const getClassName = id => {
     let className = '';
     if (id === selected) {
-      className = 'bg-gray-50 text-pink-400';
+      className = 'bg-gray-100 text-pink-400';
     }
     return className;
   };

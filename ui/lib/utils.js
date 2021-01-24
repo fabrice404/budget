@@ -22,6 +22,9 @@ export const nextPayDay = () => {
   } else if (npd.getDay() === 6) {
     // saturday = remove 1 day
     npd.setDate(npd.getDate() - 1);
+  } else if (npd.getDay() === 1){
+    // monday = remove 2 days
+    npd.setDate(npd.getDate() - 2);
   }
 
   if (npd < now) {

@@ -56,7 +56,7 @@ const Dashboard = ({ token, setError }) => {
             getAccounts={getAccounts}
           />
         </div>
-        <div className="xl:w-5/6 md:w-3/4 bg-gray-50">
+        <div className="xl:w-5/6 md:w-3/4 bg-gray-100">
           {!selected && (
             <Home token={token} accounts={accounts} setSelected={setSelected} />
           )}
