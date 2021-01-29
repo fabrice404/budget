@@ -23,21 +23,21 @@ const Account = ({ accounts, selected, checkTransaction }) => {
             <span className="text-pink-400 border-r-2 border-gray-300 pr-4">
               {accountType(account.type)}
             </span>
-            <span className="pl-4">{account.name}</span>
+            <span className="text-gray-200 pl-4">{account.name}</span>
           </div>
 
           <div className="flex gap-10 my-4">
-            <div className="w-1/2 bg-white rounded-xl px-6 py-4">
-              <div className="w-3/4 border-b-2 border-gray-100 pb-2 text-base font-medium">
+            <div className="w-1/2 bg-gray-800 rounded-xl px-6 py-4">
+              <div className="w-3/4 border-b-2 border-gray-600 pb-2 text-base text-gray-200 font-medium">
                 Current balance
               </div>
-              <div className="text-right text-2xl px-2 py-4">
+              <div className="text-right text-2xl text-gray-200 px-2 py-4">
                 {formatMoney(account.balance)}
               </div>
             </div>
-            <div className="w-1/2 bg-white rounded-xl px-6 py-4">
+            <div className="w-1/2 bg-gray-800 rounded-xl px-6 py-4">
               <div className="flex">
-                <div className="w-3/4 border-b-2 border-gray-100 pb-2 text-base font-medium">
+                <div className="w-3/4 border-b-2 border-gray-600 pb-2 text-base text-gray-200 font-medium">
                   EOM Prediction
                 </div>
                 <div className="w-1/4 pb-2 text-sm font-medium text-pink-400 text-right">
@@ -47,13 +47,13 @@ const Account = ({ accounts, selected, checkTransaction }) => {
                   days
                 </div>
               </div>
-              <div className="text-right text-2xl px-2 py-4 text-gray-400">
+              <div className="text-right text-2xl text-gray-200 px-2 py-4">
                 {formatMoney(account.eom)}
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl px-6 py-4">
+          <div className="bg-gray-800 rounded-xl px-6 py-4">
             <div className="cursor-crosshair">
               <Line
                 data={{
@@ -87,24 +87,25 @@ const Account = ({ accounts, selected, checkTransaction }) => {
                     yAxes: [{ ticks: { beginAtZero: true } }]
                   }
                 }}
+                height={80}
               />
             </div>
           </div>
 
-          <div className="bg-white rounded-xl px-6 py-4">
+          <div className="bg-gray-800 rounded-xl px-6 py-4 my-4">
             <table className="table-auto min-w-full">
               <thead className="border-b-2 border-gray-100 pb-1">
                 <tr>
-                  <th className="text-sm font-normal text-gray-500 text-left p-2">
+                  <th className="text-sm font-normal text-gray-200 text-left p-2">
                     Date
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-left p-2">
+                  <th className="text-sm font-normal text-gray-200 text-left p-2">
                     Name
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2">
                     Amount
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2">
                     {' '}
                   </th>
                 </tr>
@@ -122,18 +123,18 @@ const Account = ({ accounts, selected, checkTransaction }) => {
                         key={`${account.id}/${transaction.name}/${transaction.date}/${transaction.amount}/${i}`}
                         className={isPast(transaction.date) ? '' : 'opacity-25'}
                       >
-                        <td className="text-sm font-normal text-left p-2">
+                        <td className="text-sm font-normal text-gray-200 text-left p-2">
                           {transaction.date}
                         </td>
-                        <td className="text-sm font-normal text-left p-2">
+                        <td className="text-sm font-normal text-gray-200 text-left p-2">
                           {transaction.name}
                         </td>
-                        <td className="text-sm font-normal text-right p-2">
+                        <td className="text-sm font-normal text-gray-200 text-right p-2">
                           <span
                             className={
                               transaction.amount >= 0
-                                ? 'bg-green-50 text-green-500 py-1 px-3 rounded-lg'
-                                : 'bg-red-50 text-red-500 py-1 px-3 rounded-lg'
+                                ? 'bg-green-500 text-green-50 py-1 px-3 rounded-lg'
+                                : 'bg-red-500 text-red-50 py-1 px-3 rounded-lg'
                             }
                           >
                             {formatMoney(transaction.amount)}
@@ -142,7 +143,7 @@ const Account = ({ accounts, selected, checkTransaction }) => {
                         <td className="text-right p-2">
                           <button
                             type="button"
-                            className="bg-pink-50 text-pink-500 text-sm py-1 px-3 rounded-lg"
+                            className="bg-pink-500 text-pink-50 text-sm py-1 px-3 rounded-lg"
                             onClick={() => {
                               checkTransaction(account.id, transaction);
                             }}

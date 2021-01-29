@@ -31,16 +31,16 @@ const Home = ({ token, accounts, setSelected }) => {
       <div className="flex gap-10">
         <div className="w-3/5">
           <div className="text-xl tracking-tight">
-            <span className="text-pink-400 border-r-2 border-gray-300 pr-4">
+            <span className="text-pink-400 border-r-2 border-gray-600 pr-4">
               Dashboard
             </span>
-            <span className="pl-4">Hi {token.user.name}!</span>
+            <span className="text-gray-200 pl-4">Hi {token.user.name}!</span>
           </div>
 
           <div className="flex gap-10 my-4">
-            <div className="w-1/2 bg-white rounded-xl px-6 py-4">
+            <div className="w-1/2 bg-gray-800 rounded-xl px-6 py-4">
               <div className="flex">
-                <div className="w-3/4 border-b-2 border-gray-100 pb-2 text-base font-medium">
+                <div className="w-3/4 border-b-2 border-gray-600 pb-2 text-base text-gray-200 font-medium">
                   EOM Prediction
                 </div>
                 <div className="w-1/4 pb-2 text-sm font-medium text-pink-400 text-right">
@@ -50,15 +50,15 @@ const Home = ({ token, accounts, setSelected }) => {
                   days
                 </div>
               </div>
-              <div className="text-right text-2xl px-2 py-4">
+              <div className="text-right text-2xl text-gray-200 px-2 py-4">
                 {formatMoney(eom)}
               </div>
             </div>
-            <div className="w-1/2 bg-white rounded-xl px-6 py-4">
-              <div className="w-3/4 border-b-2 border-gray-100 pb-2 text-base font-medium">
+            <div className="w-1/2 bg-gray-800 rounded-xl px-6 py-4">
+              <div className="w-3/4 border-b-2 border-gray-600 pb-2 text-base text-gray-200 font-medium">
                 Savings
               </div>
-              <div className="text-right text-2xl px-2 py-4">
+              <div className="text-right text-2xl text-gray-200 px-2 py-4">
                 {formatMoney(savings)}
               </div>
             </div>
@@ -67,20 +67,20 @@ const Home = ({ token, accounts, setSelected }) => {
           <div className="text-lg text-pink-400 my-5 font-medium">
             Current accounts
           </div>
-          <div className="bg-white rounded-xl px-6 py-4">
+          <div className="bg-gray-800 rounded-xl px-6 py-4">
             <table className="table-auto min-w-full">
-              <thead className="border-b-2 border-gray-100 pb-1">
+              <thead className="border-b-2 border-gray-600 pb-1">
                 <tr>
-                  <th className="text-sm font-normal text-gray-500 text-left p-2">
+                  <th className="text-sm font-normal text-gray-200 text-left p-2">
                     Account
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2">
                     Balance
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2">
                     End of Month
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2 pr-4">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2 pr-4">
                     Details
                   </th>
                 </tr>
@@ -92,19 +92,19 @@ const Home = ({ token, accounts, setSelected }) => {
                     .filter(account => account.type === 'current')
                     .map(account => (
                       <tr key={account.id}>
-                        <td className="text-sm font-semibold text-left p-2">
+                        <td className="text-sm font-semibold text-left text-gray-200 p-2">
                           {account.name}
                         </td>
-                        <td className="text-sm font-normal text-right p-2">
+                        <td className="text-sm font-normal text-right text-gray-200 p-2">
                           {formatMoney(account.balance)}
                         </td>
-                        <td className="text-sm font-normal text-right p-2">
+                        <td className="text-sm font-normal text-right text-gray-200 p-2">
                           {formatMoney(account.eom)}
                         </td>
                         <td className="text-right p-2">
                           <button
                             type="button"
-                            className="bg-pink-50 text-pink-500 text-sm py-1 px-3 rounded-lg"
+                            className="bg-pink-800 text-pink-200 text-sm py-1 px-3 rounded-lg"
                             onClick={() => setSelected(account.id)}
                           >
                             view
@@ -134,6 +134,11 @@ const Home = ({ token, accounts, setSelected }) => {
                     })
                 }}
                 options={{
+                  legend: {
+                    labels: {
+                      fontColor: '#E5E7EB',
+                    }
+                  },
                   scales: {
                     xAxes: [
                       {
@@ -155,17 +160,17 @@ const Home = ({ token, accounts, setSelected }) => {
             Deposit accounts
           </div>
 
-          <div className="bg-white rounded-xl px-6 py-4">
+          <div className="bg-gray-800 rounded-xl px-6 py-4">
             <table className="table-auto min-w-full">
-              <thead className="border-b-2 border-gray-100 pb-1">
+              <thead className="border-b-2 border-gray-600 pb-1">
                 <tr>
-                  <th className="text-sm font-normal text-gray-500 text-left p-2">
+                  <th className="text-sm font-normal text-gray-200 text-left p-2">
                     Account
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2">
                     Balance
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2 pr-4">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2 pr-4">
                     Details
                   </th>
                 </tr>
@@ -177,16 +182,16 @@ const Home = ({ token, accounts, setSelected }) => {
                     .filter(account => account.type === 'deposit')
                     .map(account => (
                       <tr key={account.id}>
-                        <td className="text-sm font-semibold text-left p-2">
+                        <td className="text-sm font-semibold text-left text-gray-200 p-2">
                           {account.name}
                         </td>
-                        <td className="text-sm font-normal text-right p-2">
+                        <td className="text-sm font-normal text-right text-gray-200 p-2">
                           {formatMoney(account.balance)}
                         </td>
                         <td className="text-right p-2">
                           <button
                             type="button"
-                            className="bg-pink-50 text-pink-500 text-sm py-1 px-3 rounded-lg"
+                            className="bg-pink-800 text-pink-200 text-sm py-1 px-3 rounded-lg"
                             onClick={() => setSelected(account.id)}
                           >
                             view
@@ -199,17 +204,17 @@ const Home = ({ token, accounts, setSelected }) => {
           </div>
 
           <div className="text-lg text-pink-400 my-5 font-medium">Credits</div>
-          <div className="bg-white rounded-xl px-6 py-4">
+          <div className="bg-gray-800 rounded-xl px-6 py-4">
             <table className="table-auto min-w-full">
-              <thead className="border-b-2 border-gray-100 pb-1">
+              <thead className="border-b-2 border-gray-600 pb-1">
                 <tr>
-                  <th className="text-sm font-normal text-gray-500 text-left p-2">
+                  <th className="text-sm font-normal text-gray-200 text-left p-2">
                     Account
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2">
                     Balance
                   </th>
-                  <th className="text-sm font-normal text-gray-500 text-right p-2 pr-4">
+                  <th className="text-sm font-normal text-gray-200 text-right p-2 pr-4">
                     Details
                   </th>
                 </tr>
@@ -221,16 +226,16 @@ const Home = ({ token, accounts, setSelected }) => {
                     .filter(account => account.type === 'credit')
                     .map(account => (
                       <tr key={account.id}>
-                        <td className="text-sm font-semibold text-left p-2">
+                        <td className="text-sm font-semibold text-left text-gray-200 p-2">
                           {account.name}
                         </td>
-                        <td className="text-sm font-normal text-right p-2">
+                        <td className="text-sm font-normal text-right text-gray-200 p-2">
                           {formatMoney(-Math.abs(account.balance))}
                         </td>
                         <td className="text-right p-2">
                           <button
                             type="button"
-                            className="bg-pink-50 text-pink-500 text-sm py-1 px-3 rounded-lg"
+                            className="bg-pink-800 text-pink-200 text-sm py-1 px-3 rounded-lg"
                             onClick={() => setSelected(account.id)}
                           >
                             view
@@ -243,7 +248,7 @@ const Home = ({ token, accounts, setSelected }) => {
           </div>
         </div>
         <div className="w-2/5">
-          <div className="text-lg font-medium">Recent transactions</div>
+          <div className="text-lg font-medium text-gray-200">Recent transactions</div>
           <div className="text-sm my-2 text-pink-400 font-medium">
             Today
             <span className="text-xs text-gray-400 ml-2">

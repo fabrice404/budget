@@ -48,7 +48,7 @@ const Dashboard = ({ token, setError }) => {
   return (
     <div className="montserrat">
       <div className="flex min-h-screen">
-        <div className="xl:w-1/6 md:w-1/4 bg-white">
+        <div className="xl:w-1/6 md:w-1/4 bg-gray-800">
           <Menu
             accounts={accounts}
             selected={selected}
@@ -56,7 +56,7 @@ const Dashboard = ({ token, setError }) => {
             getAccounts={getAccounts}
           />
         </div>
-        <div className="xl:w-5/6 md:w-3/4 bg-gray-100">
+        <div className="xl:w-5/6 md:w-3/4 bg-gray-900">
           {!selected && (
             <Home token={token} accounts={accounts} setSelected={setSelected} />
           )}

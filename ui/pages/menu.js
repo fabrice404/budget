@@ -5,7 +5,9 @@ const Menu = ({ accounts, selected, setSelected, getAccounts }) => {
   const getClassName = id => {
     let className = '';
     if (id === selected) {
-      className = 'bg-gray-100 text-pink-400';
+      className = 'bg-gray-900 text-pink-400';
+    } else {
+      className = 'text-gray-400';
     }
     return className;
   };
@@ -27,7 +29,7 @@ const Menu = ({ accounts, selected, setSelected, getAccounts }) => {
         }}
       >
         <Logo height="40" />
-        <span className="pl-6 pt-2 font-thin text-xl tracking-widest whitespace-nowrap">
+        <span className="pl-6 pt-2 font-thin text-xl tracking-widest whitespace-nowrap text-white">
           B U D G E T
         </span>
       </div>
@@ -73,8 +75,8 @@ const Menu = ({ accounts, selected, setSelected, getAccounts }) => {
                         {items}
                       </span>
                     ) : (
-                      <span />
-                    )}
+                        <span />
+                      )}
                   </span>
                 </li>
               );
