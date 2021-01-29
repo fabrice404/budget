@@ -23,11 +23,11 @@ const Login = ({ setToken, setError }) => {
   };
 
   return (
-    <div className="mx-auto text-center object-center pt-20">
+    <div className="mx-auto text-center object-center pt-20 bg-gray-800 h-screen">
       <div className="mx-auto flex">
         <div className="flex-1" />
-        <div className="flex-1 whitespace-nowrap">
-          <div className="flex pl-15">
+        <div className="flex whitespace-nowrap">
+          <div className="flex">
             <Logo height="128" />
             <span className="pl-6 pt-10 font-thin text-5xl tracking-widest whitespace-nowrap text-gray-400">
               B U D G E T
