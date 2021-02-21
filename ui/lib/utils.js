@@ -1,3 +1,19 @@
+export const dateDDMMYYYY = date =>
+  `${date
+    .getDate()
+    .toString()
+    .padStart(2, '0')}/${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}/${date.getFullYear()}`;
+
+export const dateYYYYMMDD = date =>
+  `${date.getFullYear()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}-${date
+    .getDate()
+    .toString()
+    .padStart(2, '0')}`;
+
 export const formatMoney = (amount, currency = '€') => {
   if (amount == null) {
     return '';
@@ -10,7 +26,6 @@ export const formatMoney = (amount, currency = '€') => {
 
 export const nextPayDay = () => {
   const now = new Date();
-  const todayDay = now.getDate();
   const todayMonth = now.getMonth();
   const todayYear = now.getFullYear();
 
@@ -22,7 +37,7 @@ export const nextPayDay = () => {
   } else if (npd.getDay() === 6) {
     // saturday = remove 1 day
     npd.setDate(npd.getDate() - 1);
-  } else if (npd.getDay() === 1){
+  } else if (npd.getDay() === 1) {
     // monday = remove 2 days
     npd.setDate(npd.getDate() - 2);
   }
@@ -43,6 +58,11 @@ export const nextPayDay = () => {
   return npd;
 };
 
+export const isFuture = date => {
+  const today = new Date();
+  return date > dateYYYYMMDD(today);
+};
+
 export const isToday = date => {
   const today = new Date();
   return date === dateYYYYMMDD(today);
@@ -54,21 +74,35 @@ export const isYesterday = date => {
   return date === dateYYYYMMDD(yesterday);
 };
 
-export const dateDDMMYYYY = date =>
-  `${date
-    .getDate()
-    .toString()
-    .padStart(2, '0')}/${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}/${date.getFullYear()}`;
+export const hasFutureTransactions = accounts => {
+  let hasTransactions = false;
+  accounts.forEach(account => {
+    if (account.exports.find(transaction => isFuture(transaction.date))) {
+      hasTransactions = true;
+    }
+  });
+  return hasTransactions;
+};
 
-export const dateYYYYMMDD = date =>
-  `${date.getFullYear()}-${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}-${date
-      .getDate()
-      .toString()
-      .padStart(2, '0')}`;
+export const hasTodayTransactions = accounts => {
+  let hasTransactions = false;
+  accounts.forEach(account => {
+    if (account.exports.find(transaction => isToday(transaction.date))) {
+      hasTransactions = true;
+    }
+  });
+  return hasTransactions;
+};
+
+export const hasYesterdayTransactions = accounts => {
+  let hasTransactions = false;
+  accounts.forEach(account => {
+    if (account.exports.find(transaction => isYesterday(transaction.date))) {
+      hasTransactions = true;
+    }
+  });
+  return hasTransactions;
+};
 
 export const accountType = type => {
   return {

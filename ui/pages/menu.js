@@ -75,8 +75,8 @@ const Menu = ({ accounts, selected, setSelected, getAccounts }) => {
                         {items}
                       </span>
                     ) : (
-                        <span />
-                      )}
+                      <span />
+                    )}
                   </span>
                 </li>
               );

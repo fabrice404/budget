@@ -158,7 +158,9 @@ const Account = ({ accounts, selected, checkTransaction }) => {
           </div>
         </div>
         <div className="w-2/5">
-          <div className="text-lg mb-5 font-medium">Recent transactions</div>
+          <div className="text-lg mb-5 font-medium text-gray-200">
+            Recent transactions
+          </div>
           {account.exports
             .sort((a, b) => (a.date < b.date ? 1 : -1))
             .map((transaction, i) => (

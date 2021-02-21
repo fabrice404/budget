@@ -5,7 +5,11 @@ import {
   nextPayDay,
   isToday,
   isYesterday,
-  dateDDMMYYYY
+  dateDDMMYYYY,
+  isFuture,
+  hasFutureTransactions,
+  hasYesterdayTransactions,
+  hasTodayTransactions
 } from '../lib/utils';
 import Transaction from './transaction';
 
@@ -136,7 +140,7 @@ const Home = ({ token, accounts, setSelected }) => {
                 options={{
                   legend: {
                     labels: {
-                      fontColor: '#E5E7EB',
+                      fontColor: '#E5E7EB'
                     }
                   },
                   scales: {
@@ -248,13 +252,35 @@ const Home = ({ token, accounts, setSelected }) => {
           </div>
         </div>
         <div className="w-2/5">
-          <div className="text-lg font-medium text-gray-200">Recent transactions</div>
-          <div className="text-sm my-2 text-pink-400 font-medium">
-            Today
-            <span className="text-xs text-gray-400 ml-2">
-              {dateDDMMYYYY(now)}
-            </span>
+          <div className="text-lg font-medium text-gray-200">
+            Recent transactions
           </div>
+
+          {hasFutureTransactions(accounts) && (
+            <div className="text-sm my-2 text-pink-400 font-medium">Future</div>
+          )}
+          {accounts &&
+            accounts.map(account =>
+              account.exports
+                .filter(transaction => isFuture(transaction.date))
+                .map((transaction, i) => (
+                  <Transaction
+                    name={transaction.name}
+                    amount={transaction.amount}
+                    info={account.name}
+                    key={`${i}/${transaction.name}/${transaction.date}`}
+                  />
+                ))
+            )}
+
+          {hasTodayTransactions(accounts) && (
+            <div className="text-sm my-2 text-pink-400 font-medium">
+              Today
+              <span className="text-xs text-gray-400 ml-2">
+                {dateDDMMYYYY(now)}
+              </span>
+            </div>
+          )}
           {accounts &&
             accounts.map(account =>
               account.exports
@@ -269,9 +295,11 @@ const Home = ({ token, accounts, setSelected }) => {
                 ))
             )}
 
-          <div className="text-sm my-2 text-pink-400 font-medium">
-            Yesterday
-          </div>
+          {hasYesterdayTransactions(accounts) && (
+            <div className="text-sm my-2 text-pink-400 font-medium">
+              Yesterday
+            </div>
+          )}
           {accounts &&
             accounts.map(account =>
               account.exports
