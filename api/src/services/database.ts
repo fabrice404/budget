@@ -102,6 +102,7 @@ const update = (): void => {
         && t.date === csvTransaction.date
         && t.amount === parseFloat(csvTransaction.amount.toString()));
       if (!transaction) {
+        debug(`transaction created ${JSON.stringify(csvTransaction)}`);
         updated = true;
         dbAccount.transactions.push({
           name: csvTransaction.name,
