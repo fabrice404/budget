@@ -14,6 +14,7 @@ const Account = ({ accounts, selected, checkTransaction }) => {
   }
 
   const npd = nextPayDay();
+  let lastday;
 
   return (
     <div className="p-10">
@@ -163,14 +164,28 @@ const Account = ({ accounts, selected, checkTransaction }) => {
           </div>
           {account.exports
             .sort((a, b) => (a.date < b.date ? 1 : -1))
-            .map((transaction, i) => (
-              <Transaction
-                name={transaction.name}
-                amount={transaction.amount}
-                info={transaction.date}
-                key={`${i}/${account.id}/${transaction.name}/${transaction.date}`}
-              />
-            ))}
+            .map((transaction, i) => {
+              let header;
+              if (lastday !== transaction.date) {
+                header = (
+                  <div className="text-sm my-2 text-pink-400 font-medium">
+                    {transaction.date}
+                  </div>
+                );
+              }
+              lastday = transaction.date;
+              return (
+                <div>
+                  {header}
+                  <Transaction
+                    name={transaction.name}
+                    amount={transaction.amount}
+                    info=""
+                    key={`${i}/${account.id}/${transaction.name}/${transaction.date}`}
+                  />
+                </div>
+              )
+            })}
         </div>
       </div>
     </div>
